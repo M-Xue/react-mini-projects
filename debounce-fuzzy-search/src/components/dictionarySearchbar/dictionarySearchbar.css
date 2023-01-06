@@ -30,10 +30,6 @@
     margin-bottom: 10px;
 }
 
-.wordResultsContainer, input{
-    font-family: var(--font-sans);
-}
-
 .wordResult, .noMatchesResult {
     margin: 4px 10px;
     padding: 15px;

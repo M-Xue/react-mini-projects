@@ -22,7 +22,6 @@ export const DictionarySearchbar = forwardRef<HTMLDivElement, Props>(({handleUse
     const getWords = async () => {
       const wordsReq = await fetch('./words.json');
       const wordsData = await wordsReq.json();
-      // console.log(wordsData);
       setWords(wordsData.words);
     }
     getWords();
@@ -33,8 +32,6 @@ export const DictionarySearchbar = forwardRef<HTMLDivElement, Props>(({handleUse
       inputRef.current?.focus();
     }
   }, [words])
-  
-  
 
   const handleSearch = (e) => {
     e.preventDefault();
