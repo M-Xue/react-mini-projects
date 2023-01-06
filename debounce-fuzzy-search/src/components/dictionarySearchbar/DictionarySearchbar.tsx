@@ -1,14 +1,10 @@
 import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import './dictionarySearchBar.css';
+import { levenshteinDistance } from '../../util/levenshtein-distance';
 
 interface Props {
   handleUserSelection: (input: string) => void;
   closeSearchBar: () => void;
-}
-
-export interface SearchBarRef {
-  focus: () => void;
-  containerRef: HTMLDivElement | null;
 }
 
 export const DictionarySearchBar = forwardRef<HTMLDivElement, Props>(({handleUserSelection, closeSearchBar}, ref) => {
@@ -62,8 +58,26 @@ export const DictionarySearchBar = forwardRef<HTMLDivElement, Props>(({handleUse
       setMatches(null);
       return;
     }
+
+    const levenshteinDistanceSort: string[][] = [];
+    inputMatches?.forEach((match) => {
+      const dist = levenshteinDistance(userInput, match);
+      if (dist > levenshteinDistanceSort.length - 1) {
+        for (const i in [...Array(dist - (levenshteinDistanceSort.length - 1)).keys()]) {
+          levenshteinDistanceSort.push([]);
+        }
+      }
+      levenshteinDistanceSort[dist].push(match);
+    })
+
     if (inputMatches) {
-      setMatches(inputMatches);
+      let res: string[] = [];
+
+      levenshteinDistanceSort.forEach((order: string[]) => {
+        res = res.concat(order);
+      })
+
+      setMatches(res);
       setNoMatches(false);
       return;
     }
