@@ -1,25 +1,15 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import './App.css'
-import { DictionarySearchbar } from './components/dictionarySearchbar/DictionarySearchbar'
+import { DictionarySearchBar } from './components/dictionarySearchBar/DictionarySearchBar'
 import { PokemonSearchbar } from './components/pokemonSearchbar/PokemonSearchbar.tsx'
 import { WordInformation } from './components/wordInfomation/WordInformation';
 import {CSSTransition} from 'react-transition-group';
 
 export default function App() {
-  // console.log('test')
 
   const [userSelection, setUserSelection] = useState<string | null>(null);
   const [isSearchBarActive, setIsSearchBarActive] = useState<boolean>(false);
   const searchBarRef = useRef<HTMLInputElement | null>(null);
-
-
-  // const handleOutsideClick = (e:MouseEvent) => {
-  //   if (searchBarRef.current && !searchBarRef.current.contains(e.target)) {
-  //     closeSearchBar();
-  //     // console.log("first")
-  //   }
-  //   // console.log(searchBarRef);
-  // }
 
   const closeSearchBar = () => {
     setIsSearchBarActive(false);
@@ -42,10 +32,8 @@ export default function App() {
   }, [isSearchBarActive])
 
   useEffect(() => {
-    // attach the event listener
     document.addEventListener('keydown', handleKeyPress);
 
-    // remove the event listener
     return () => {
       document.removeEventListener('keydown', handleKeyPress);
     };
@@ -60,10 +48,9 @@ export default function App() {
         classNames="search-bar"
         unmountOnExit={true}
       > 
-        <DictionarySearchbar handleUserSelection={handleUserSelection} closeSearchBar={closeSearchBar} ref={searchBarRef}/>
+        <DictionarySearchBar handleUserSelection={handleUserSelection} closeSearchBar={closeSearchBar} ref={searchBarRef}/>
       </CSSTransition>
 
-      {/* {isSearchBarActive && <DictionarySearchbar handleUserSelection={handleUserSelection} ref={searchBarRef}/>} */}
       {userSelection && <WordInformation word={userSelection}/>}
     </div>
   )

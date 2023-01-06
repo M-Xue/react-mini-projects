@@ -27,7 +27,12 @@
   align-items: center;
   width: 100vw;
   height: 100vh;
+  /* height: -moz-available;
+  height: -webkit-fill-available;
+  height: fill-available; */
+  /* height: max(100vh, 100%); */
   background-color: var(--background);
+  padding: 50px;
 }
 
 

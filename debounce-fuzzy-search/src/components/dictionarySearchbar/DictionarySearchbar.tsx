@@ -1,5 +1,5 @@
 import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
-import './dictionarySearchbar.css';
+import './dictionarySearchBar.css';
 
 interface Props {
   handleUserSelection: (input: string) => void;
@@ -11,7 +11,7 @@ export interface SearchBarRef {
   containerRef: HTMLDivElement | null;
 }
 
-export const DictionarySearchbar = forwardRef<HTMLDivElement, Props>(({handleUserSelection, closeSearchBar}, ref) => {
+export const DictionarySearchBar = forwardRef<HTMLDivElement, Props>(({handleUserSelection, closeSearchBar}, ref) => {
 
   const [words, setWords] = useState<string[] | null>(null);
   const [matches, setMatches] = useState<string[] | null>(null);
@@ -70,7 +70,7 @@ export const DictionarySearchbar = forwardRef<HTMLDivElement, Props>(({handleUse
   }
 
   return (
-    <div className='dictionarySearchbarContainer' ref={ref}>
+    <div className='dictionarySearchBarContainer' ref={ref}>
       <div className="outsideClickWrapper" ref={outsideClickWrapperRef}>
         <input type="text" className='inputBox' placeholder={words ? 'Type a word...' : 'Loading...'} disabled={words ? false : true} onChange={handleSearch}  ref={inputRef}/>
         {matches && <div className='wordResultsContainer'>{matches && matches.map((word, idx) => <div key={word} className='wordResult' onClick={() => handleUserSelection(word)}>{word}</div>)}</div>}

@@ -61,9 +61,7 @@ export const WordInformation = ({word}:Props) => {
                 </>
                 :
                 <div>Loading...</div>
-            
             }
-            
         </div>
     )
 }
