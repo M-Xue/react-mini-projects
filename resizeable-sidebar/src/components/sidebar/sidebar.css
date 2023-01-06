@@ -1,0 +1,26 @@
+.sidebarContainer {
+    height: 100vh;
+    width: 240px;
+
+    /* background-color: #000; */
+    background-color: #FAFBFC;
+    /* border-right: #FAFBFC; */
+
+    /* box-shadow: 1px 0 0 0 red; */
+}
+
+.sidebarResizeButton {
+    border: none;
+    background-color: transparent;
+    width: 24px;
+    display: flex;
+    cursor: ew-resize;
+}
+
+.sidebarButtonShadow {
+    width: 3px;
+    background: linear-gradient(to left, rgba(0, 0, 0, 0.2) 0px, rgba(0, 0, 0, 0.2) 1px, rgba(0, 0, 0, 0.1) 1px, rgba(0, 0, 0, 0) 100% );
+    opacity: 0.5;
+}
+
+/* box-shadow: 0 0 0 1px rgba(0,0,0,.07),0 2px 4px rgba(0,0,0,.05); */

@@ -1,0 +1,50 @@
+:root {
+  --background: rgb(252 252 252);
+  --a1: rgba(0 0 0 / 0.05);
+  --a2: rgba(0 0 0 / 0.1);
+  --foreground: rgb(28 28 29);
+  --shadow: box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;;
+  --unit: 8px;
+  /* ^ source: https://kbar.vercel.app/ */
+
+  --font-monospace: "SFMono Regular",Consolas,"Liberation Mono",Menlo,Courier,monospace;
+  --font-regular: "Inter UI","SF Pro Display",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu, Cantarell,"Open Sans","Helvetica Neue",sans-serif;
+  /* ^ linear */
+  --font-sans: "Inter",--apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
+  /* ^ https://cmdk.paco.me/ */
+}
+
+* { 
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--background);
+}
+
+
+.search-bar-animation-container {
+  position: relative;
+}
+
+.search-bar-enter {
+  opacity: 0;
+}
+.search-bar-enter-active {
+  opacity: 1;
+  transition: opacity 200ms;
+}
+.search-bar-exit {
+  opacity: 1;
+}
+.search-bar-exit-active {
+  opacity: 0;
+  transition: opacity 200ms;
+}

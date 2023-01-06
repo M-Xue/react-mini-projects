@@ -1,0 +1,13 @@
+.searchbarContainer {
+    background-color: rgb(255, 255, 255);
+    width: min(700px, 90%);
+    border: black 1px solid;
+}
+
+.inputBox {
+    border: none;
+    font-size: 1.2rem;
+    margin: 15px;
+    outline: none;
+}
+

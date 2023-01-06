@@ -1,0 +1,14 @@
+https://www.30secondsofcode.org/css/s/zoomin-zoomout-animation
+^^ linear
+
+hover effects
+:root {
+  --background: rgb(252 252 252);
+  --a1: rgba(0 0 0 / 0.05);
+  --a2: rgba(0 0 0 / 0.1);
+  --foreground: rgb(28 28 29);
+  --shadow: 0px 6px 20px rgb(0 0 0 / 20%);
+  --unit: 8px;
+  /* ^ source: https://kbar.vercel.app/ */
+}
+
