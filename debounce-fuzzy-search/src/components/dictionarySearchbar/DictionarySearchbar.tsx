@@ -3,28 +3,41 @@ import './dictionarySearchbar.css';
 
 interface Props {
   handleUserSelection: (input: string) => void;
+  closeSearchBar: () => void;
 }
 
 export interface SearchBarRef {
   focus: () => void;
   containerRef: HTMLDivElement | null;
 }
-// <SearchBarRef, Props>
-export const DictionarySearchbar = forwardRef<HTMLDivElement, Props>(({handleUserSelection}, ref) => {
+
+export const DictionarySearchbar = forwardRef<HTMLDivElement, Props>(({handleUserSelection, closeSearchBar}, ref) => {
 
   const [words, setWords] = useState<string[] | null>(null);
   const [matches, setMatches] = useState<string[] | null>(null);
   const [noMatches, setNoMatches] = useState<boolean>(false);
 
-  const inputRef = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLInputElement | null>(null);
+  const outsideClickWrapperRef = useRef<HTMLDivElement | null>(null);
+
+  const handleOutsideClick = (e:MouseEvent) => {
+    if (outsideClickWrapperRef.current && !outsideClickWrapperRef.current.contains(e.target)) {
+      closeSearchBar();
+    }
+  }
 
   useEffect(() => {
+    document.addEventListener('click', handleOutsideClick);
     const getWords = async () => {
       const wordsReq = await fetch('./words.json');
       const wordsData = await wordsReq.json();
       setWords(wordsData.words);
     }
     getWords();
+
+    return () => {
+      document.removeEventListener('click', handleOutsideClick);
+    };
   }, [])
 
   useEffect(() => {
@@ -56,21 +69,13 @@ export const DictionarySearchbar = forwardRef<HTMLDivElement, Props>(({handleUse
     }
   }
 
-  // useImperativeHandle(ref, () => ({
-  //   focus() {
-  //     if (inputRef.current) {
-  //       inputRef.current.focus();
-  //     }
-  //   },
-  //   containerRef: containerRef.current,
-  // }))
-
-
   return (
     <div className='dictionarySearchbarContainer' ref={ref}>
-      <input type="text" className='inputBox' placeholder={words ? 'Type a word...' : 'Loading...'} disabled={words ? false : true} onChange={handleSearch}  ref={inputRef}/>
-      {matches && <div className='wordResultsContainer'>{matches && matches.map((word, idx) => <div key={word} className='wordResult' onClick={() => handleUserSelection(word)}>{word}</div>)}</div>}
-      {noMatches && <div className='wordResultsContainer'><div className='noMatchesResult'>No matches</div></div>}
+      <div className="outsideClickWrapper" ref={outsideClickWrapperRef}>
+        <input type="text" className='inputBox' placeholder={words ? 'Type a word...' : 'Loading...'} disabled={words ? false : true} onChange={handleSearch}  ref={inputRef}/>
+        {matches && <div className='wordResultsContainer'>{matches && matches.map((word, idx) => <div key={word} className='wordResult' onClick={() => handleUserSelection(word)}>{word}</div>)}</div>}
+        {noMatches && <div className='wordResultsContainer'><div className='noMatchesResult'>No matches</div></div>}
+      </div>
     </div>
   )
 })

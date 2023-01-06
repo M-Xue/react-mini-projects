@@ -13,6 +13,14 @@ export default function App() {
   const searchBarRef = useRef<HTMLInputElement | null>(null);
 
 
+  // const handleOutsideClick = (e:MouseEvent) => {
+  //   if (searchBarRef.current && !searchBarRef.current.contains(e.target)) {
+  //     closeSearchBar();
+  //     // console.log("first")
+  //   }
+  //   // console.log(searchBarRef);
+  // }
+
   const closeSearchBar = () => {
     setIsSearchBarActive(false);
   }
@@ -52,7 +60,7 @@ export default function App() {
         classNames="search-bar"
         unmountOnExit={true}
       > 
-        <DictionarySearchbar handleUserSelection={handleUserSelection} ref={searchBarRef}/>
+        <DictionarySearchbar handleUserSelection={handleUserSelection} closeSearchBar={closeSearchBar} ref={searchBarRef}/>
       </CSSTransition>
 
       {/* {isSearchBarActive && <DictionarySearchbar handleUserSelection={handleUserSelection} ref={searchBarRef}/>} */}
