@@ -14,3 +14,23 @@ fuzzy search (Levenshtein Distance)
 can pissibily use words or pokemon. click button to switch between them
 https://dictionaryapi.dev/
 https://pokeapi.co/
+
+## Lessons Learnt
+
+- You can use ternary conditions within HTML properties based on component state
+
+```js
+<input type="text" className='inputBox' placeholder={words ? 'Type a word...' : 'Loading...'} disabled={words ? false : true} onChange={handleSearch}  ref={inputRef}/>
+```
+
+- useEffect and useLayoutEffect can be used to trigger HTML events, such as ```focus()``` for input elements, for DOM elements that are conditionally rendered by putting the state that conditionally renders the DOM element as a dependency in useEffect/useLayoutEffect.
+- You can pass arguments into event handlers by creating an anonymous arrow function and then calling the event handler with the given argument rather than passing the event handler directly.
+```js
+onClick={() => handleUserSelection(word)}
+```
+
+## Bugs Encountered
+
+- When using forwardRef, you should use the [correct TypeScript syntax](https://felixgerschau.com/react-forwardref-explained/) for forwardRef rather than the props and individual refs so parent components don't raise issues.
+
+## Interesting Observations
