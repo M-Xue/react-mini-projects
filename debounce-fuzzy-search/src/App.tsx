@@ -5,6 +5,10 @@ import { PokemonSearchbar } from './components/pokemonSearchbar/PokemonSearchbar
 import { WordInformation } from './components/wordInfomation/WordInformation';
 import {CSSTransition} from 'react-transition-group';
 
+const CmdSvg = (
+  <svg className='cmdIcon' xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>
+)
+
 export default function App() {
 
   const [userSelection, setUserSelection] = useState<string | null>(null);
@@ -52,6 +56,7 @@ export default function App() {
       </CSSTransition>
 
       {userSelection && <WordInformation word={userSelection}/>}
+      {!userSelection && <p className='prompt'>Press&nbsp; {CmdSvg} &nbsp;+ K</p>}
     </div>
   )
 }

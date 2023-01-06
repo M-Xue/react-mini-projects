@@ -28,9 +28,11 @@ https://pokeapi.co/
 ```js
 onClick={() => handleUserSelection(word)}
 ```
+- When using forwardRef, you should use the [correct TypeScript syntax](https://felixgerschau.com/react-forwardref-explained/) for forwardRef rather than the props and individual refs so parent components don't raise issues.
 
 ## Bugs Encountered
 
-- When using forwardRef, you should use the [correct TypeScript syntax](https://felixgerschau.com/react-forwardref-explained/) for forwardRef rather than the props and individual refs so parent components don't raise issues.
+- When the width of the viewport causes the height of the word definition to extend, if the extended height is longer than the viewport hight, the top gets clipped off and is unscrollable.
+  - Try use the word "abs" as test case
 
 ## Interesting Observations

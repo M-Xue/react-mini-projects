@@ -35,6 +35,12 @@
   padding: 50px;
 }
 
+.prompt {
+  display: flex;
+  align-items: center;
+}
+
+
 
 .search-bar-animation-container {
   position: relative;
