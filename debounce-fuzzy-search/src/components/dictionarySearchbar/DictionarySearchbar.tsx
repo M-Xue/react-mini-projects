@@ -52,7 +52,16 @@ export const DictionarySearchBar = forwardRef<HTMLDivElement, Props>(({handleUse
       return;
     }
 
-    const inputMatches = words?.filter(s => s.includes(userInput));
+    // const inputMatches = words?.filter(s => s.includes(userInput));
+
+    // * This implementation allows misspelling of the word
+    const inputMatches = words?.filter((word) => {
+      // word.includes(userInput);
+      if (levenshteinDistance(userInput, word) <= 1 || word.includes(userInput)) {
+        return true;
+      }
+    });
+
     if (inputMatches?.length === 0) {
       setNoMatches(true);
       setMatches(null);
