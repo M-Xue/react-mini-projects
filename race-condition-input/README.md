@@ -1,0 +1,1 @@
+create an input box that makes an api call with every keystroke. make a race condition to stop prev api call before you call next and debounce inputs.

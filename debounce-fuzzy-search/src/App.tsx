@@ -1,17 +1,19 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import './App.css'
-import { DictionarySearchbar } from './components/dictionarySearchbar/DictionarySearchbar'
+import { DictionarySearchBar } from './components/dictionarySearchBar/DictionarySearchBar'
 import { PokemonSearchbar } from './components/pokemonSearchbar/PokemonSearchbar.tsx'
 import { WordInformation } from './components/wordInfomation/WordInformation';
 import {CSSTransition} from 'react-transition-group';
 
+const CmdSvg = (
+  <svg className='cmdIcon' xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>
+)
+
 export default function App() {
-  // console.log('test')
 
   const [userSelection, setUserSelection] = useState<string | null>(null);
   const [isSearchBarActive, setIsSearchBarActive] = useState<boolean>(false);
   const searchBarRef = useRef<HTMLInputElement | null>(null);
-
 
   const closeSearchBar = () => {
     setIsSearchBarActive(false);
@@ -34,10 +36,8 @@ export default function App() {
   }, [isSearchBarActive])
 
   useEffect(() => {
-    // attach the event listener
     document.addEventListener('keydown', handleKeyPress);
 
-    // remove the event listener
     return () => {
       document.removeEventListener('keydown', handleKeyPress);
     };
@@ -45,6 +45,7 @@ export default function App() {
 
   return (
     <div className="App">
+      <div className="backgroundColor"></div>
       <CSSTransition
         nodeRef={null} 
         in={isSearchBarActive} 
@@ -52,11 +53,11 @@ export default function App() {
         classNames="search-bar"
         unmountOnExit={true}
       > 
-        <DictionarySearchbar handleUserSelection={handleUserSelection} ref={searchBarRef}/>
+        <DictionarySearchBar handleUserSelection={handleUserSelection} closeSearchBar={closeSearchBar} ref={searchBarRef}/>
       </CSSTransition>
 
-      {/* {isSearchBarActive && <DictionarySearchbar handleUserSelection={handleUserSelection} ref={searchBarRef}/>} */}
       {userSelection && <WordInformation word={userSelection}/>}
+      {!userSelection && <p className='prompt'>Press&nbsp; {CmdSvg} &nbsp;+ K</p>}
     </div>
   )
 }
