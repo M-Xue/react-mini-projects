@@ -45,6 +45,7 @@ export default function App() {
 
   return (
     <div className="App">
+      <div className="backgroundColor"></div>
       <CSSTransition
         nodeRef={null} 
         in={isSearchBarActive} 

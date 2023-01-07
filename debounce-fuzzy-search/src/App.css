@@ -26,13 +26,22 @@
   justify-content: center;
   align-items: center;
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   /* height: -moz-available;
   height: -webkit-fill-available;
   height: fill-available; */
   /* height: max(100vh, 100%); */
-  background-color: var(--background);
   padding: 50px;
+}
+
+.backgroundColor {
+  background-color: var(--background);
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -999;
 }
 
 .prompt {

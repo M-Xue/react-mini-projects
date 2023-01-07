@@ -59,7 +59,7 @@ export const DictionarySearchBar = forwardRef<HTMLDivElement, Props>(({handleUse
       return;
     }
 
-    const levenshteinDistanceSort: string[][] = [];
+    const levenshteinDistanceSort: string[][] = []; // Could use an object here instead of an array to reduce space complexity but that would increase the time complexity because you need to check if the distance is in the object keys
     inputMatches?.forEach((match) => {
       const dist = levenshteinDistance(userInput, match);
       if (dist > levenshteinDistanceSort.length - 1) {
