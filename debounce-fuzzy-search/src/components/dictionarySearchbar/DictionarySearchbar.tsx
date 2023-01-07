@@ -94,10 +94,10 @@ export const DictionarySearchBar = forwardRef<HTMLDivElement, Props>(({handleUse
     }
   }
 
+  // Source: https://dmitripavlutin.com/react-throttle-debounce/
   const debouncedHandleSearch = useCallback(
     debounce(handleSearch, 300)
   , [words]);
-  
 
   return (
     <div className='dictionarySearchBarContainer' ref={ref}>
